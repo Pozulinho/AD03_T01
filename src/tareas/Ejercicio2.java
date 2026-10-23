@@ -11,17 +11,17 @@ public class Ejercicio2 {
 	public static void main(String[] args) {
 		try (Connection conn = DriverManager.getConnection(url, user, password)) {
             String dni = obtenerDni();
-            String currentName = obtenerNombre(conn, dni);
+            String nombreRevisado = obtenerNombre(conn, dni);
 
-            if (currentName != null) {
-                System.out.println(currentName);
+            if (nombreRevisado != null) {
+                System.out.println(nombreRevisado);
                 String nombreNuevo = escribirNombre();
 
                 if (!nombreNuevo.isEmpty()) {
                     updateStudentName(conn, dni, nombreNuevo);
-                    System.out.println("Se ha modificado la información correctamente");
+                    System.out.println("Se ha modificado la información correctamente.");
                 } else {
-                    System.out.println("No ha introducido un nuevo nombre");
+                    System.out.println("No ha introducido un nuevo nombre.");
                 }
             }
             System.out.println("Fin del programa.");
@@ -31,7 +31,7 @@ public class Ejercicio2 {
     }
 
     private static String obtenerDni() {
-        System.out.println("Escribe el DNI del alumno que deseas modificar");
+        System.out.println("Escribe el DNI del alumno que deseas modificar: ");
         return Escritura.readString();
     }
 
@@ -43,7 +43,7 @@ public class Ejercicio2 {
                 if (rs.next()) {
                     return rs.getString("nombre");
                 } else {
-                	System.out.println("El dni del alumno no existe");
+                	System.out.println("El dni del alumno no existe.");
                 }                
             }
         }
@@ -51,7 +51,7 @@ public class Ejercicio2 {
     }
 
     private static String escribirNombre() {
-        System.out.println("Escribe el nuevo nombre para el alumno");
+        System.out.println("Escribe el nuevo nombre para el alumno (deja en blanco para no modificarlo):");
         return Escritura.readString();
     }
 
